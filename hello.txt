@@ -1,2 +1,4 @@
 Hello Git
 Learning Git is fun!
+Learning Git is fun!
+Hi i am testing on it!
