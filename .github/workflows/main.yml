@@ -1,4 +1,4 @@
-name: C++ Build and Test Sum
+name: C++ Build and Test All Pass
 
 on: [push]
 
@@ -12,16 +12,35 @@ jobs:
       - name: Install g++
         run: sudo apt-get update && sudo apt-get install -y g++
 
-      - name: Build program
-        run: g++ sum.cpp -o sum
-
-      - name: Run program
-        run: ./sum
-
-      - name: Verify program output
+      # Reverse test
+      - name: Build reverse.cpp
+        run: g++ reverse.cpp -o reverse
+      - name: Test reverse.cpp
         run: |
-          OUTPUT=$(./sum)
-          if [ "$OUTPUT" != "5" ]; then
-            echo "❌ Test failed! Expected '5' but got '$OUTPUT'"
+          OUTPUT=$(./reverse)
+          if [ "$OUTPUT" != "olleh" ]; then
+            echo "❌ reverse.cpp test failed! Expected 'olleh' but got '$OUTPUT'"
+            exit 1
+          fi
+
+      # Factorial test
+      - name: Build factorial.cpp
+        run: g++ factorial.cpp -o factorial
+      - name: Test factorial.cpp
+        run: |
+          OUTPUT=$(./factorial)
+          if [ "$OUTPUT" != "120" ]; then
+            echo "❌ factorial.cpp test failed! Expected '120' but got '$OUTPUT'"
+            exit 1
+          fi
+
+      # Max test
+      - name: Build max.cpp
+        run: g++ max.cpp -o max
+      - name: Test max.cpp
+        run: |
+          OUTPUT=$(./max)
+          if [ "$OUTPUT" != "10" ]; then
+            echo "❌ max.cpp test failed! Expected '10' but got '$OUTPUT'"
             exit 1
           fi
