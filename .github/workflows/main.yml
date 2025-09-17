@@ -13,7 +13,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y g++
 
       - name: Build reverse.cpp
-        run: g++ reverse.cpp -o reverse
+        run: g++ -std=c++20 reverse.cpp -o reverse
 
       - name: Test reverse.cpp
         run: |
@@ -33,7 +33,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y g++
 
       - name: Build factorial.cpp
-        run: g++ factorial.cpp -o factorial
+        run: g++ -std=c++20 factorial.cpp -o factorial
 
       - name: Test factorial.cpp
         run: |
@@ -53,7 +53,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y g++
 
       - name: Build max.cpp
-        run: g++ max.cpp -o max
+        run: g++ -std=c++20 max.cpp -o max
 
       - name: Test max.cpp
         run: |
