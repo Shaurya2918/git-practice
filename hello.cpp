@@ -1,17 +1,19 @@
 #include <iostream>
 #include <vector>
-#include <ranges>   // needed for std::views
-
-using namespace std;
 
 int main() {
-    vector<int> nums = {1, 2, 3, 4, 5};
+    std::vector<int> nums = {1, 2, 3, 4};  // Correct numbers to sum 10
+    int sum = 0;
 
-    // Print squares of numbers
-    for (int x : nums | views::transform([](int n) { return n * n; })) {
-        cout << x << " ";
+    for (int n : nums) {
+        sum += n;
     }
 
-    cout << endl;
+    if (sum == 10) {
+        std::cout << "✅ Test passed: sum is 10\n";
+    } else {
+        std::cout << "❌ Test failed: sum is not 10\n";
+    }
+
     return 0;
 }
