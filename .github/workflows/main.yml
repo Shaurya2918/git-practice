@@ -1,9 +1,9 @@
-name: C++ Build and Test All Pass
+name: C++ Mixed Pass/Fail
 
 on: [push]
 
 jobs:
-  build:
+  reverse_job:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -12,9 +12,9 @@ jobs:
       - name: Install g++
         run: sudo apt-get update && sudo apt-get install -y g++
 
-      # Reverse test
       - name: Build reverse.cpp
         run: g++ reverse.cpp -o reverse
+
       - name: Test reverse.cpp
         run: |
           OUTPUT=$(./reverse)
@@ -23,9 +23,18 @@ jobs:
             exit 1
           fi
 
-      # Factorial test
+  factorial_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install g++
+        run: sudo apt-get update && sudo apt-get install -y g++
+
       - name: Build factorial.cpp
         run: g++ factorial.cpp -o factorial
+
       - name: Test factorial.cpp
         run: |
           OUTPUT=$(./factorial)
@@ -34,9 +43,18 @@ jobs:
             exit 1
           fi
 
-      # Max test
+  max_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install g++
+        run: sudo apt-get update && sudo apt-get install -y g++
+
       - name: Build max.cpp
         run: g++ max.cpp -o max
+
       - name: Test max.cpp
         run: |
           OUTPUT=$(./max)
