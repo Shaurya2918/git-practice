@@ -1,0 +1,32 @@
+name: C++ Build and Test
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout your repo
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Install g++
+      - name: Install g++
+        run: sudo apt-get update && sudo apt-get install -y g++
+
+      # Step 3: Build the program
+      - name: Build program
+        run: g++ hello.cpp -o hello
+
+      # Step 4: Run the program
+      - name: Run program
+        run: ./hello
+
+      # Step 5: Test program output
+      - name: Verify program output
+        run: |
+          OUTPUT=$(./hello)
+          if [ "$OUTPUT" != "Hello, World!" ]; then
+            echo "❌ Test failed! Expected 'Hello, World!' but got '$OUTPUT'"
+            exit 1
+          fi
