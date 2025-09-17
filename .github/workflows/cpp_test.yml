@@ -12,8 +12,8 @@ jobs:
 
       - name: Install build tools
         run: |
-          apt update
-          apt install -y g++ build-essential
+          sudo apt update
+          sudo apt install -y g++ build-essential
 
       - name: Build and Test hello_success.cpp
         run: |
